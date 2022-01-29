@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  client-another-api:
+    container_name: client-another-api
+    build: .
+    ports:
+      - "8080:8080"
+    networks:
+      - client-another-api-network
+
+  mockoon-api:
+    container_name: mockoon-api
+    build: ./mockoon
+    ports:
+      - "3000:3000"
+    networks:
+      - client-another-api-network
+
+networks:
+  client-another-api-network:
+    driver: bridge
